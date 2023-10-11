@@ -1,0 +1,118 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-atm-heading" data-cy="ATMCreateUpdateHeading" jhiTranslate="frontApp.backendATm.home.createOrEditLabel">
+        Crear o editar ATM
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="frontApp.backendATm.estado" for="field_estado">Estado</label>
+          <input type="text" class="form-control" name="estado" id="field_estado" data-cy="estado" formControlName="estado" />
+          <div *ngIf="editForm.get('estado')!.invalid && (editForm.get('estado')!.dirty || editForm.get('estado')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('estado')?.errors?.required" jhiTranslate="entity.validation.required">
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="frontApp.backendATm.tipo" for="field_tipo">Tipo</label>
+          <input type="text" class="form-control" name="tipo" id="field_tipo" data-cy="tipo" formControlName="tipo" />
+          <div *ngIf="editForm.get('tipo')!.invalid && (editForm.get('tipo')!.dirty || editForm.get('tipo')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('tipo')?.errors?.required" jhiTranslate="entity.validation.required">
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="frontApp.backendATm.saldodisponible" for="field_saldodisponible">Saldodisponible</label>
+          <input
+            type="number"
+            class="form-control"
+            name="saldodisponible"
+            id="field_saldodisponible"
+            data-cy="saldodisponible"
+            formControlName="saldodisponible"
+          />
+          <div
+            *ngIf="
+              editForm.get('saldodisponible')!.invalid &&
+              (editForm.get('saldodisponible')!.dirty || editForm.get('saldodisponible')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('saldodisponible')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('saldodisponible')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              Este campo debe ser un número.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="frontApp.backendATm.ubicacion" for="field_ubicacion">Ubicacion</label>
+          <input type="text" class="form-control" name="ubicacion" id="field_ubicacion" data-cy="ubicacion" formControlName="ubicacion" />
+          <div *ngIf="editForm.get('ubicacion')!.invalid && (editForm.get('ubicacion')!.dirty || editForm.get('ubicacion')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('ubicacion')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              Este campo es obligatorio.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="frontApp.backendATm.transacciones" for="field_transacciones">Transacciones</label>
+          <select
+            class="form-control"
+            id="field_transacciones"
+            data-cy="transacciones"
+            name="transacciones"
+            formControlName="transacciones"
+            [compareWith]="compareTransaccion"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="transaccionOption" *ngFor="let transaccionOption of transaccionsSharedCollection">
+              {{ transaccionOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

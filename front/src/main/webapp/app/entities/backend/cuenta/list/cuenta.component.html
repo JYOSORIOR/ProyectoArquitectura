@@ -1,0 +1,132 @@
+<div>
+  <h2 id="page-heading" data-cy="CuentaHeading">
+    <span jhiTranslate="frontApp.backendCuenta.home.title">Cuentas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="frontApp.backendCuenta.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-cuenta"
+        [routerLink]="['/cuenta/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="frontApp.backendCuenta.home.createLabel"> Crear nuevo Cuenta </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="cuentas?.length === 0">
+    <span jhiTranslate="frontApp.backendCuenta.home.notFound">Ningún Cuentas encontrado</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="cuentas && cuentas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tipo">
+            <div class="d-flex">
+              <span jhiTranslate="frontApp.backendCuenta.tipo">Tipo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="estado">
+            <div class="d-flex">
+              <span jhiTranslate="frontApp.backendCuenta.estado">Estado</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="saldo">
+            <div class="d-flex">
+              <span jhiTranslate="frontApp.backendCuenta.saldo">Saldo</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cliente.id">
+            <div class="d-flex">
+              <span jhiTranslate="frontApp.backendCuenta.cliente">Cliente</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="retiros.id">
+            <div class="d-flex">
+              <span jhiTranslate="frontApp.backendCuenta.retiros">Retiros</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cuenta of cuentas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cuenta', cuenta.id, 'view']">{{ cuenta.id }}</a>
+          </td>
+          <td>{{ cuenta.tipo }}</td>
+          <td>{{ cuenta.estado }}</td>
+          <td>{{ cuenta.saldo }}</td>
+          <td>
+            <div *ngIf="cuenta.cliente">
+              <a [routerLink]="['/cliente', cuenta.cliente.id, 'view']">{{ cuenta.cliente.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="cuenta.retiros">
+              <a [routerLink]="['/retiro', cuenta.retiros.id, 'view']">{{ cuenta.retiros.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/cuenta', cuenta.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/cuenta', cuenta.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+              </button>
+
+              <button type="submit" (click)="delete(cuenta)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="cuentas && cuentas.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

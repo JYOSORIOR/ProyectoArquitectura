@@ -1,0 +1,33 @@
+{
+  "frontApp": {
+    "backendCuenta": {
+      "home": {
+        "title": "Cuentas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Cuenta",
+        "createOrEditLabel": "Create or edit a Cuenta",
+        "notFound": "No Cuentas found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Cuenta {{ id }}?"
+      },
+      "detail": {
+        "title": "Cuenta"
+      },
+      "id": "ID",
+      "tipo": "Tipo",
+      "estado": "Estado",
+      "saldo": "Saldo",
+      "transacciones": "Transacciones",
+      "cliente": "Cliente",
+      "retiros": "Retiros"
+    }
+  },
+  "backendApp": {
+    "backendCuenta": {
+      "created": "A new Cuenta is created with identifier {{ param }}",
+      "updated": "A Cuenta is updated with identifier {{ param }}",
+      "deleted": "A Cuenta is deleted with identifier {{ param }}"
+    }
+  }
+}

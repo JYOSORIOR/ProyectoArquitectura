@@ -1,0 +1,32 @@
+{
+  "frontApp": {
+    "backendTransaccion": {
+      "home": {
+        "title": "Transaccions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Transaccion",
+        "createOrEditLabel": "Create or edit a Transaccion",
+        "notFound": "No Transaccions found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Transaccion {{ id }}?"
+      },
+      "detail": {
+        "title": "Transaccion"
+      },
+      "id": "ID",
+      "estado": "Estado",
+      "fecha": "Fecha",
+      "cantidad": "Cantidad",
+      "atm": "Atm",
+      "cuenta": "Cuenta"
+    }
+  },
+  "backendApp": {
+    "backendTransaccion": {
+      "created": "A new Transaccion is created with identifier {{ param }}",
+      "updated": "A Transaccion is updated with identifier {{ param }}",
+      "deleted": "A Transaccion is deleted with identifier {{ param }}"
+    }
+  }
+}

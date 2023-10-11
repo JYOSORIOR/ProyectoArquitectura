@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20231005013551",
+  "clientRootFolder": "backend",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "transaccion",
+  "fields": [
+    {
+      "fieldName": "estado",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fecha",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cantidad",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "backend",
+  "name": "Transaccion",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "aTM",
+      "otherEntityRelationshipName": "transacciones",
+      "relationshipName": "atm",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "cuenta",
+      "otherEntityRelationshipName": "transacciones",
+      "relationshipName": "cuenta",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

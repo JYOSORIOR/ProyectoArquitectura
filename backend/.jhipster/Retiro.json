@@ -1,0 +1,52 @@
+{
+  "applications": "*",
+  "changelogDate": "20231005013549",
+  "clientRootFolder": "backend",
+  "databaseType": "sql",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "retiro",
+  "fields": [
+    {
+      "fieldName": "contiene",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cantidad",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "fecha",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "microserviceName": "backend",
+  "name": "Retiro",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "cuenta",
+      "otherEntityRelationshipName": "retiros",
+      "relationshipName": "cuenta",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "aTM",
+      "otherEntityRelationshipName": "retiros",
+      "relationshipName": "atm",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

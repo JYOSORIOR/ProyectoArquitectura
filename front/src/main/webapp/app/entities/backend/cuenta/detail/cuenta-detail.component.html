@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="cuenta">
+      <h2 data-cy="cuentaDetailsHeading"><span jhiTranslate="frontApp.backendCuenta.detail.title">Cuenta</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ cuenta.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendCuenta.tipo">Tipo</span></dt>
+        <dd>
+          <span>{{ cuenta.tipo }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendCuenta.estado">Estado</span></dt>
+        <dd>
+          <span>{{ cuenta.estado }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendCuenta.saldo">Saldo</span></dt>
+        <dd>
+          <span>{{ cuenta.saldo }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendCuenta.cliente">Cliente</span></dt>
+        <dd>
+          <div *ngIf="cuenta.cliente">
+            <a [routerLink]="['/cliente', cuenta.cliente.id, 'view']">{{ cuenta.cliente.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendCuenta.retiros">Retiros</span></dt>
+        <dd>
+          <div *ngIf="cuenta.retiros">
+            <a [routerLink]="['/retiro', cuenta.retiros.id, 'view']">{{ cuenta.retiros.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/cuenta', cuenta.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

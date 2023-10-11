@@ -1,0 +1,46 @@
+entity Cliente {
+    nombre String required
+    tipodeusuario String required
+    correo String required
+    cedula String required
+    telefono String required
+}
+
+entity Cuenta {
+    tipo String required
+    estado String required
+    saldo Double required
+}
+
+entity Retiro {
+    contiene String required
+    estado String required
+    cantidad Double required
+    fecha Instant required
+}
+
+entity ATM {
+    estado String required
+    tipo String required
+    saldodisponible Double required
+    ubicacion String required
+}
+
+entity Transaccion {
+    estado String required
+    fecha Instant required
+    cantidad Double required
+}
+
+relationship OneToMany {
+    Cliente{cuenta} to Cuenta{cliente}
+    Cuenta{transacciones} to Transaccion{cuenta}
+    Transaccion{atm} to ATM{transacciones}
+    ATM{retiros} to Retiro{atm}
+    Retiro{cuenta} to Cuenta{retiros}
+}
+
+dto all with mapstruct
+paginate all with pagination
+service all with serviceImpl
+microservice * with backend

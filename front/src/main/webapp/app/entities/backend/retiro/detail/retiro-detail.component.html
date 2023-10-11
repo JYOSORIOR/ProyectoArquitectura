@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="retiro">
+      <h2 data-cy="retiroDetailsHeading"><span jhiTranslate="frontApp.backendRetiro.detail.title">Retiro</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ retiro.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendRetiro.contiene">Contiene</span></dt>
+        <dd>
+          <span>{{ retiro.contiene }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendRetiro.estado">Estado</span></dt>
+        <dd>
+          <span>{{ retiro.estado }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendRetiro.cantidad">Cantidad</span></dt>
+        <dd>
+          <span>{{ retiro.cantidad }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendRetiro.fecha">Fecha</span></dt>
+        <dd>
+          <span>{{ retiro.fecha | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendRetiro.atm">Atm</span></dt>
+        <dd>
+          <div *ngIf="retiro.atm">
+            <a [routerLink]="['/atm', retiro.atm.id, 'view']">{{ retiro.atm.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/retiro', retiro.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

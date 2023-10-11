@@ -1,0 +1,33 @@
+{
+  "frontApp": {
+    "backendATm": {
+      "home": {
+        "title": "ATMS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new ATM",
+        "createOrEditLabel": "Create or edit a ATM",
+        "notFound": "No ATMS found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete ATM {{ id }}?"
+      },
+      "detail": {
+        "title": "ATM"
+      },
+      "id": "ID",
+      "estado": "Estado",
+      "tipo": "Tipo",
+      "saldodisponible": "Saldodisponible",
+      "ubicacion": "Ubicacion",
+      "retiros": "Retiros",
+      "transacciones": "Transacciones"
+    }
+  },
+  "backendApp": {
+    "backendATm": {
+      "created": "A new ATM is created with identifier {{ param }}",
+      "updated": "A ATM is updated with identifier {{ param }}",
+      "deleted": "A ATM is deleted with identifier {{ param }}"
+    }
+  }
+}

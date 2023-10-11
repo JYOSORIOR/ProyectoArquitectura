@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="aTM">
+      <h2 data-cy="aTMDetailsHeading"><span jhiTranslate="frontApp.backendATm.detail.title">ATM</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ aTM.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendATm.estado">Estado</span></dt>
+        <dd>
+          <span>{{ aTM.estado }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendATm.tipo">Tipo</span></dt>
+        <dd>
+          <span>{{ aTM.tipo }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendATm.saldodisponible">Saldodisponible</span></dt>
+        <dd>
+          <span>{{ aTM.saldodisponible }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendATm.ubicacion">Ubicacion</span></dt>
+        <dd>
+          <span>{{ aTM.ubicacion }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendATm.transacciones">Transacciones</span></dt>
+        <dd>
+          <div *ngIf="aTM.transacciones">
+            <a [routerLink]="['/transaccion', aTM.transacciones.id, 'view']">{{ aTM.transacciones.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/atm', aTM.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

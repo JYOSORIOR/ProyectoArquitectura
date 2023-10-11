@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="transaccion">
+      <h2 data-cy="transaccionDetailsHeading"><span jhiTranslate="frontApp.backendTransaccion.detail.title">Transaccion</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ transaccion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendTransaccion.estado">Estado</span></dt>
+        <dd>
+          <span>{{ transaccion.estado }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendTransaccion.fecha">Fecha</span></dt>
+        <dd>
+          <span>{{ transaccion.fecha | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendTransaccion.cantidad">Cantidad</span></dt>
+        <dd>
+          <span>{{ transaccion.cantidad }}</span>
+        </dd>
+        <dt><span jhiTranslate="frontApp.backendTransaccion.cuenta">Cuenta</span></dt>
+        <dd>
+          <div *ngIf="transaccion.cuenta">
+            <a [routerLink]="['/cuenta', transaccion.cuenta.id, 'view']">{{ transaccion.cuenta.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+      </button>
+
+      <button type="button" [routerLink]="['/transaccion', transaccion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+{
+  "frontApp": {
+    "backendRetiro": {
+      "home": {
+        "title": "Retiros",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Retiro",
+        "createOrEditLabel": "Create or edit a Retiro",
+        "notFound": "No Retiros found"
+      },
+      "delete": {
+        "question": "Are you sure you want to delete Retiro {{ id }}?"
+      },
+      "detail": {
+        "title": "Retiro"
+      },
+      "id": "ID",
+      "contiene": "Contiene",
+      "estado": "Estado",
+      "cantidad": "Cantidad",
+      "fecha": "Fecha",
+      "cuenta": "Cuenta",
+      "atm": "Atm"
+    }
+  },
+  "backendApp": {
+    "backendRetiro": {
+      "created": "A new Retiro is created with identifier {{ param }}",
+      "updated": "A Retiro is updated with identifier {{ param }}",
+      "deleted": "A Retiro is deleted with identifier {{ param }}"
+    }
+  }
+}
